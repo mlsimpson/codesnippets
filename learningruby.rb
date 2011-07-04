@@ -10,7 +10,7 @@ class LearningRubyThroughTests < Test::Unit::TestCase
   end
   # NOTE:  Array.size is the actual size of the array.
 
-  def test_array1
+  def test_array2
     a = [1, 2, 3]
     assert_equal(3, a.length)
   end
