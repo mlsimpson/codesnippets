@@ -202,14 +202,13 @@ class LearningRubyThroughTests < Test::Unit::TestCase
   # NOTE:  Array.each fails if the array is empty.
 
   def test_delete_arbitrary_repetion_from_array3
-    a = [2, 2, 2, 1, 2]
-    a.map{|n|
+    a = [2, 2, 2, 1, 5]
+    a = a.each{|n|
       3.times{a.delete_at(a.index(n))} if a.count(n) >= 3
+    }.reject{|i|
+      i == 1 or i == 5
     }
-    a = a.reject{|n|
-      n == 1 || n == 5
-    }
-    assert_equal [2], a
+    assert_equal [], a
   end
 
 end
