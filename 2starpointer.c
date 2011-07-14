@@ -3,11 +3,14 @@
 
 int main(){
 
-  int **two_star_pointer = malloc(2 * sizeof( int * ) );
-
   int height = 5;
+  int width = 10;
 
-  *two_star_pointer = &height;
+  int **two_star_int = malloc(2 * sizeof(int *) );
 
-  printf("The value of height is: %d ", **two_star_pointer);
+  *(two_star_int + 0) = &height;
+  *(two_star_int + 1) = &width;
+
+  printf("The values are: %d and %d  ", **two_star_int, **(two_star_int + 1) );
+
 }
