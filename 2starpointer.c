@@ -13,4 +13,9 @@ int main(){
 
   printf("The values are: %d and %d  ", **two_star_int, **(two_star_int + 1) );
 
+  two_star_int[0] = &height;
+  two_star_int[1] = &width;
+
+  printf("The values are: %d and %d  ", *two_star_int[0], *two_star_int[1] );
+
 }
