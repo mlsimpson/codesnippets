@@ -18,4 +18,9 @@ int main(){
 
   printf("The values are: %d and %d  ", *two_star_int[0], *two_star_int[1] );
 
+  /*
+   * *two_star_int[0] is the same thing as: **(two_star_int + 0)
+   * *two_star_int[1] is the same thing as: **(two_star_int + 1)
+   */
+
 }
