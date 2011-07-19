@@ -1,5 +1,6 @@
 arg = ARGV[0].to_i
 
+# Ideally, the "x" would be the number of primes at the final stage.
 def sieve(x)
   s = (0..x.to_i).to_a
 
@@ -11,7 +12,6 @@ def sieve(x)
     (p*p).step(x, p) { |m| s[m] = nil } # Starting at p*p, set every p-th value to "nil" until max_value
   }
   s = s.compact
-  puts s.join(" ")
 end
 
 def timing_method(block=nil, *args)
@@ -26,5 +26,5 @@ def timing_method(block=nil, *args)
 end
 
 timing_method do
-  sieve(arg)
+  puts sieve(arg).join(" ")
 end
