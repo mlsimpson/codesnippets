@@ -1,3 +1,7 @@
+# Any prime > 3 can be represented as:
+# 6n (+/-) 1
+#
+# Useful!
 class Integer
   def isPrime?
     if self == 1
