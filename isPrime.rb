@@ -4,7 +4,7 @@
 # Useful!
 class Integer
   def isPrime?
-    if self == 1
+    if self <= 1
       return false
     elsif self < 4
       return true
