@@ -23,19 +23,20 @@ data.each{|line|
     word = word.chars.to_a
     newmid = word[1..-2]
     if newmid.length > 1
-      while newmid == word[1..-2]
-        newmid.shuffle!
-      end
-      # Go through each letter.  If each letter is the same as the previous word, switch it.
-      i = 0
-      while i < newmid.length
-        while newmid[i] == orig[1 + i]
-          x = rand(newmid.length)
-          temp = newmid[i]
-          newmid[i] = newmid[x]
-          newmid[x] = temp
+      if newmid.length < 3
+        newmid.reverse!
+      else
+        # Go through each letter.  If each letter is the same as the previous word, switch it.
+        i = 0
+        while i < newmid.length
+          while newmid[i] == orig[1 + i]
+            x = rand(newmid.length)
+            temp = newmid[i]
+            newmid[i] = newmid[x]
+            newmid[x] = temp
+          end
+          i += 1
         end
-        i += 1
       end
       word[1..-2] = newmid
     end
