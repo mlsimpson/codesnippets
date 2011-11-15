@@ -1,2 +1,8 @@
+# Highlights a given word.  Pipe tail -f | grep into this.
 perl -p -e 's/(ERROR|Error|error)/\033[46;1m$1\033[0m/g;'
+
+# Find the max number is a given column of numbers.  Currently tuned to mpstat.
 awk '{if ($4 ~/[0-9]\.[0-9]/) num=$4};num>m{m=num}END{print "Max number:  "m}'
+
+# Vim-ized dos2unix
+:%s/^M//g
