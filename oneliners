@@ -6,3 +6,6 @@ awk '{if ($4 ~/[0-9]\.[0-9]/) num=$4};num>m{m=num}END{print "Max number:  "m}'
 
 # Vim-ized dos2unix
 :%s/^M//g
+
+# Tail log file, grep for a word, dump to a file
+script -c "tail -fn 0 catalina.out | grep -i a3ls" loadbal.log
