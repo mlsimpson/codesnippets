@@ -1,0 +1,2 @@
+perl -p -e 's/(ERROR|Error|error)/\033[46;1m$1\033[0m/g;'
+awk '{if ($4 ~/[0-9]\.[0-9]/) num=$4};num>m{m=num}END{print "Max number:  "m}'
