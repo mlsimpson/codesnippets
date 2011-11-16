@@ -1,7 +1,7 @@
 #!/usr/bin/perl
 
 use strict;
-use warnings;
+#use warnings;
 
 use POSIX qw(strftime);
 use Time::HiRes qw(gettimeofday usleep);
@@ -40,20 +40,37 @@ sub run {
 		my $line;
 		my $num;
 		chomp (my ($stat) = slurp("$dir/$_"));
-		$line = sprintf '%-31.31s:%16.16s', $_, BytesToReadableString($stat);
-		if (@{$stats{$_}} > 0) {
-			$num = (int (($stat - $stats{$_}->[0]) / 1));
-			$line .= sprintf '%10.10s%s', BytesToReadableString($num), "/s";
-		}
-		if (@{$stats{$_}} > 4) {
-			$line .= sprintf '%10.10s%s', BytesToReadableString(int (($stat - $stats{$_}->[4]) / 5)), "/s";
-		}
-		if (@{$stats{$_}} > 14) {
-			$line .= sprintf '%10.10s%s', BytesToReadableString(int (($stat - $stats{$_}->[14]) / 15)), "/s";
-		}
-		if (@{$stats{$_}} > 59) {
-			$line .= sprintf '%10.10s%s', BytesToReadableString(int (($stat - $stats{$_}->[59]) / 60)), "/s";
-		}
+    if($_ eq 'rx_bytes' || $_ eq 'tx_bytes'){
+      $line = sprintf '%-31.31s:%16.16s', $_, BytesToReadableString($stat);
+      if (@{$stats{$_}} > 0) {
+        $num = (int (($stat - $stats{$_}->[0]) / 1));
+        $line .= sprintf '%10.10s%s', BytesToReadableString($num), "/s";
+      }
+      if (@{$stats{$_}} > 4) {
+        $line .= sprintf '%10.10s%s', BytesToReadableString(int (($stat - $stats{$_}->[4]) / 5)), "/s";
+      }
+      if (@{$stats{$_}} > 14) {
+        $line .= sprintf '%10.10s%s', BytesToReadableString(int (($stat - $stats{$_}->[14]) / 15)), "/s";
+      }
+      if (@{$stats{$_}} > 59) {
+        $line .= sprintf '%10.10s%s', BytesToReadableString(int (($stat - $stats{$_}->[59]) / 60)), "/s";
+      }
+    } else {
+      $line = sprintf '%-31.31s:%16.16s', $_, NumToMagnitute($stat);
+      if (@{$stats{$_}} > 0) {
+        $num = (int (($stat - $stats{$_}->[0]) / 1));
+        $line .= sprintf '%10.10s%s', NumToMagnitute($num), "/s";
+      }
+      if (@{$stats{$_}} > 4) {
+        $line .= sprintf '%10.10s%s', NumToMagnitute(int (($stat - $stats{$_}->[4]) / 5)), "/s";
+      }
+      if (@{$stats{$_}} > 14) {
+        $line .= sprintf '%10.10s%s', NumToMagnitute(int (($stat - $stats{$_}->[14]) / 15)), "/s";
+      }
+      if (@{$stats{$_}} > 59) {
+        $line .= sprintf '%10.10s%s', NumToMagnitute(int (($stat - $stats{$_}->[59]) / 60)), "/s";
+      }
+    }
 		if ($_ eq 'rx_bytes'){
 			if($num > $maxrx){
 				$maxrx = $num;
@@ -75,7 +92,13 @@ sub slurp {
 	local @_ = <>;
 	@_;
 }
-
+sub NumToMagnitute($) {
+  my $c = shift;
+  $c >= 1000000000 ? sprintf("%0.2fG", $c/1000000000)
+    : $c >= 1000000 ? sprintf("%02.fM", $c/1000000)
+    : $c >= 1000 ? sprintf("%0.2fK", $c/1000)
+    : $c;
+}
 sub BytesToReadableString($) {
 	my $c = shift;
 	$c >= 1073741824 ? sprintf("%0.2fGB", $c/1073741824)
