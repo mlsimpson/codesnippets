@@ -9,3 +9,6 @@ script -c "tail -fn 0 catalina.out | grep -i a3ls" loadbal.log
 
 # Timestamp a tail command with awk
 tail -fn 0 infile | awk '{"date" | getline cur_date} {close("date")} {print "[" cur_date "] " $0}' > outfile
+
+# Find the average and total process size of a multi-process command (like httpd)
+ps -ylC httpd --sort:rss | awk '{if ($8 ~/[0-9]/) num=$8}; { m = m + num }; {x = x + 1}; END { print "Average process size:  "m/x/1024"MB, Total Process Size:  "num/1024"MB" }'
