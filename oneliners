@@ -12,3 +12,6 @@ tail -fn 0 infile | awk '{"date" | getline cur_date} {close("date")} {print "[" 
 
 # Find the average and total process size of a multi-process command (like httpd)
 ps -ylC httpd --sort:rss | awk '{if ($8 ~/[0-9]/) num=$8}; { m = m + num }; {x = x + 1}; END { print "Average process size:  "m/x/1024"MB, Total Process Size:  "m/1024"MB" }'
+
+# Find and sort by Resident Size of each process on the system in MB
+sudo ps -Aely --sort:rss | awk '{print $NF":  "$8/1024" MB"}' | column -t | less
