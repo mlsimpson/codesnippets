@@ -41,7 +41,7 @@ if [ -n "$1" -a -n "$2" -a -n "$3" ]
 then
 
 # move the gnuplot instructions to /tmp/abgraph-plotme
-echo "set terminal png picsize 1024 768
+echo "set terminal png size 1024,768
 set output '$2'
 set title 'Benchmark results of $1'
 set size 2,1
