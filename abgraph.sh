@@ -86,6 +86,8 @@ rm /tmp/abgraph-data2
 rm /tmp/abgraph-data3
 rm /tmp/abgraph-plotme
 
+eog $2
+
 else
 
 # display error message on wrong usage
