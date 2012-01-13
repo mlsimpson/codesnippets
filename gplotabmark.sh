@@ -1,0 +1,39 @@
+#!/bin/sh
+
+if [ -n "$1" -a -n "$2" ]
+
+then
+
+  PLOTLOC=`which gnuplot`
+
+  # move the gnuplot instructions to ~/abgraph-plotme
+  echo "set terminal png size 1024,768
+  set output '$1'
+  set title 'Benchmark results of $1'
+  set size 1,1
+  set key left top
+  set xlabel 'request'
+  set ylabel 'ms'
+  set ytics 50
+  plot '~/abmark-bench1' using 10 with lines title 'Benchmark 1 ($2/1)', '~/abmark-bench2' using 10 with lines title 'Benchmark 2 ($2/25)', '~/abmark-bench3' using 10 with lines title 'Benchmark 3 ($2/50)'
+  " > ~/abgraph-plotme
+
+  # generate graph (png saved to user selected path by gnuplot)
+  $PLOTLOC ~/abgraph-plotme > /dev/null
+
+  echo "The graph has been saved to $1";
+
+  # tidy up
+  rm ~/abgraph-plotme
+
+  eog $1&
+
+else
+
+  # display error message on wrong usage
+  echo "Usage: gplotabmark.sh [graph name] [number of requests]"
+  echo "e.g: ./gplotabmark.sh graph.png 500"
+  echo " "
+  echo "abmark-bench(1,3) MUST be present in home directory!"
+
+fi
