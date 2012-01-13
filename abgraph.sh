@@ -44,7 +44,7 @@ then
 echo "set terminal png size 1024,768
 set output '$2'
 set title 'Benchmark results of $1'
-set size 2,1
+set size 1,1
 set key left top
 set xlabel 'request'
 set ylabel 'ms'
