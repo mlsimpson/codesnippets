@@ -15,7 +15,7 @@ then
   set xlabel 'request'
   set ylabel 'ms'
   set ytics 50
-  plot '~/abmark-bench1' using 10 with lines title 'Benchmark 1 ($2/1)', '~/abmark-bench2' using 10 with lines title 'Benchmark 2 ($2/25)', '~/abmark-bench3' using 10 with lines title 'Benchmark 3 ($2/50)'
+  plot '~/abmark-bench1' using 10 with lines title 'Benchmark 1 ($2 requests, 1 concurrent)', '~/abmark-bench2' using 10 with lines title 'Benchmark 2 ($2 requests, 25 concurrent)', '~/abmark-bench3' using 10 with lines title 'Benchmark 3 ($2 requests, 50 concurrent)', '~/abmark-bench4' using 10 with lines title 'Benchmark 4 ($2 requests, 100 concurrent)'
   " > ~/abgraph-plotme
 
   # generate graph (png saved to user selected path by gnuplot)
