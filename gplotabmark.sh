@@ -34,6 +34,6 @@ else
   echo "Usage: gplotabmark.sh [graph name] [number of requests]"
   echo "e.g: ./gplotabmark.sh graph.png 500"
   echo " "
-  echo "abmark-bench(1,3) MUST be present in home directory!"
+  echo "abmark-bench(1,4) MUST be present in home directory!"
 
 fi
