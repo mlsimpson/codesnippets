@@ -9,6 +9,11 @@ VERSION="Version 1.0"
 # find out location of ab
 ABLOC=`which ab`
 
+# Try ab -v4 :: verbosity level 4
+# -C 'NAME=CONTENT'
+# Insert the following into a php page after login
+# <?php global $user; print 'This is user: '. $user->name .' : UID:'. $user->uid; ?>
+
 echo -e  "This is abmark $VERSION";
 
 # check if all needed parameters are given
