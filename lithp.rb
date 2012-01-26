@@ -1,6 +1,6 @@
 class Lisp
   def initialize
-    @env = { 
+    @env = {
       :label => lambda { |(name,val), _| @env[name] = val },
       :quote => lambda { |sexpr, _| sexpr[0] },
       :car   => lambda { |(list), _| list[0] },
