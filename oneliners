@@ -14,7 +14,7 @@ tail -fn 0 infile | awk '{"date" | getline cur_date} {close("date")} {print "[" 
 ps -ylC httpd --sort:rss | awk '{if ($8 ~/[0-9]/) num=$8}; { m = m + num }; {x = x + 1}; END { print "Average process size:  "m/x/1024"MB, Total Process Size:  "m/1024"MB" }'
 
 # Find and sort by Resident Size of each process on the system in MB
-sudo ps -Aly --sort:rss | awk '{print $3"\t"$NF":  "$8/1024" MB"}' | column -t | less
+sudo ps aux --sort:rss | awk '{print $2"\t"$11":  "$6/1024" MB"}' | column -t | less
 
 # Completely removed orphaned .deb files on a Debian-based Linux system
 deborphan | sudo xargs dpkg -P
