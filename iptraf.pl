@@ -17,6 +17,14 @@ my %stats = do {
 	map +($_, []), grep !/^\.\.?$/, @_;
 };
 
+sub BytesToReadableString($) {
+  my $c = shift;
+  $c >= 1073741824 ? sprintf("%0.2fGB", $c/1073741824)
+    : $c >= 1048576 ? sprintf("%0.2fMB", $c/1048576)
+    : $c >= 1024 ? sprintf("%0.2fKB", $c/1024)
+    : $c . "B";
+}
+
 if (-t STDOUT) {
 	while (&keystroke != 1) {
 		print "\033[H\033[J", run();
@@ -92,19 +100,13 @@ sub slurp {
 	local @_ = <>;
 	@_;
 }
+
 sub NumToMagnitute($) {
   my $c = shift;
   $c >= 1000000000 ? sprintf("%0.2fG", $c/1000000000)
     : $c >= 1000000 ? sprintf("%02.fM", $c/1000000)
     : $c >= 1000 ? sprintf("%0.2fK", $c/1000)
     : $c;
-}
-sub BytesToReadableString($) {
-	my $c = shift;
-	$c >= 1073741824 ? sprintf("%0.2fGB", $c/1073741824)
-		: $c >= 1048576 ? sprintf("%0.2fMB", $c/1048576)
-		: $c >= 1024 ? sprintf("%0.2fKB", $c/1024)
-		: $c . "B";
 }
 
 sub keystroke {
