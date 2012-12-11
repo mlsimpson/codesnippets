@@ -1,6 +1,6 @@
-#!/usr/local/bin/zsh
+#!/bin/sh
 
-ssh -f -N -L 6669:irc.choopa.net:6669 threv@bellplantationmarketing.com
-ssh -f -N -L 6666:chat.freenode.net:6666 threv@bellplantationmarketing.com
-ssh -f -N -L 6697:ircs.cmgdigital.com:6697 threv@bellplantationmarketing.com
-ssh -f -N -L 6667:im.bitlbee.org:6667 threv@bellplantationmarketing.com
+autossh -M 0 -q -f -N -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -L 6669:irc.choopa.net:6669 threv@bellplantationmarketing.com
+autossh -M 0 -q -f -N -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -L 6666:chat.freenode.net:6666 threv@bellplantationmarketing.com
+autossh -M 0 -q -f -N -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -L 6697:ircs.cmgdigital.com:6697 threv@bellplantationmarketing.com
+autossh -M 0 -q -f -N -o "ServerAliveInterval 60" -o "ServerAliveCountMax 3" -L 6667:im.bitlbee.org:6667 threv@bellplantationmarketing.com
