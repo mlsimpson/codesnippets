@@ -19,3 +19,6 @@ sudo ps aux --sort:rss | awk '{print $2"\t"$11":  "$6/1024" MB"}' | column -t | 
 # Completely removed orphaned .deb files on a Debian-based Linux system
 deborphan | sudo xargs dpkg -P
 dpkg --get-selections | grep -i deinstall
+
+# Find total size of installed .debs by name filter (replace \-dev with w/e to be searched)
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | grep "\-dev" | sort -n | awk '{ sum+=$1} END {print sum/1024 "MB"}'
