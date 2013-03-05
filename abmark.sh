@@ -14,7 +14,7 @@ ABLOC=`which ab`
 # Insert the following into a php page after login
 # <?php global $user; print 'This is user: '. $user->name .' : UID:'. $user->uid; ?>
 
-echo -e  "This is abmark $VERSION";
+echo   "This is abmark $VERSION";
 
 # check if all needed parameters are given
 if [ -n "$1" -a -n "$2" ]
@@ -22,38 +22,38 @@ if [ -n "$1" -a -n "$2" ]
 then
 
 	# first benchmark
-	echo -e  "Benchmarking... 1/4 ($2 HTTP requests)";
+	echo   "Benchmarking... 1/4 ($2 HTTP requests)";
 	$ABLOC -n $2 -g /tmp/abmark-data1 $1 > /dev/null
-	echo -e  -e "\nGreat.  Continuing...";
+	echo    "\nGreat.  Continuing...";
 
 	# sleep 5 seconds
-	echo -e  "\nsleeping 5 seconds..."
+	echo   "\nsleeping 5 seconds..."
 	sleep 5
 
 	# second benchmark
-	echo -e  "Benchmarking... 2/4 ($2 HTTP requests, simulating 25 concurrent users)";
+	echo   "Benchmarking... 2/4 ($2 HTTP requests, simulating 25 concurrent users)";
 	$ABLOC -n $2 -c 25 -g /tmp/abmark-data2 $1 > /dev/null
-	echo -e  "\nOkay.  Continuing...";
+	echo   "\nOkay.  Continuing...";
 
 	# sleep 5 seconds
-	echo -e  "\nsleeping 5 seconds..."
+	echo   "\nsleeping 5 seconds..."
 	sleep 5
 
 	# third benchmark
-	echo -e  "Benchmarking... 3/4 ($2 HTTP requests, simulating 50 concurrent users)";
+	echo   "Benchmarking... 3/4 ($2 HTTP requests, simulating 50 concurrent users)";
 	$ABLOC -n $2 -c 50 -g /tmp/abmark-data3 $1 > /dev/null
 
-	echo -e  "\nOne more...";
+	echo   "\nOne more...";
 
 	# sleep 5 seconds
-	echo -e  "\nsleeping 5 seconds..."
+	echo   "\nsleeping 5 seconds..."
 	sleep 5
 
 	# third benchmark
-	echo -e  "Benchmarking... 4/4 ($2 HTTP requests, simulating 100 concurrent users)";
+	echo   "Benchmarking... 4/4 ($2 HTTP requests, simulating 100 concurrent users)";
 	$ABLOC -n $2 -c 100 -g /tmp/abmark-data4 $1 > /dev/null
 
-	echo -e  "\nLooks good. Finished!";
+	echo   "\nLooks good. Finished!";
 
 	# tidy up
 	mv /tmp/abmark-data1 ~/abmark-bench1
@@ -64,7 +64,7 @@ then
 else
 
 	# display error message on wrong usage
-	echo -e  "Usage: abmark [hostname to benchmark with http:// and trailing /] [number of requests]"
-	echo -e  "e.g: ./abmark http://example.com/ 500"
+	echo   "Usage: abmark [hostname to benchmark with http:// and trailing /] [number of requests]"
+	echo   "e.g: ./abmark http://example.com/ 500"
 
 fi

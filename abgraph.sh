@@ -40,20 +40,9 @@ if [ -n "$1" -a -n "$2" -a -n "$3" ]
 
 then
 
-# move the gnuplot instructions to /tmp/abgraph-plotme
-echo "set terminal png size 1024,768
-set output '$2'
-set title 'Benchmark results of $1'
-set size 1,1
-set key left top
-set xlabel 'request'
-set ylabel 'ms'
-plot '/tmp/abgraph-data1' using 10 with lines title 'Benchmark 1 ($3/1)', '/tmp/abgraph-data2' using 10 with lines title 'Benchmark 2 ($3/25)', '/tmp/abgraph-data3' using 10 with lines title 'Benchmark 3 ($3/50)'
-" > /tmp/abgraph-plotme
-
 # first benchmark
 echo "Benchmarking... 1/3 ($3 HTTP requests)";
-$ABLOC -n $3 -g /tmp/abgraph-data1 $1 > /dev/null
+$ABLOC -n $3 -g /Users/threv/abgraph-data1 $1 > /dev/null
 echo "Great.\nContinuing...";
 
 # sleep 5 seconds
@@ -62,7 +51,7 @@ sleep 5
 
 # second benchmark
 echo "Benchmarking... 2/3 ($3 HTTP requests, simulating 25 concurrent users)";
-$ABLOC -n $3 -c 25 -g /tmp/abgraph-data2 $1 > /dev/null
+$ABLOC -n $3 -c 25 -g /Users/threv/abgraph-data2 $1 > /dev/null
 echo "Okay.\nContinuing...";
 
 # sleep 5 seconds
@@ -71,27 +60,27 @@ sleep 5
 
 # third benchmark
 echo "Benchmarking... 3/3 ($3 HTTP requests, simulating 50 concurrent users)";
-$ABLOC -n $3 -c 50 -g /tmp/abgraph-data3 $1 > /dev/null
+$ABLOC -n $3 -c 50 -g /Users/threv/abgraph-data3 $1 > /dev/null
 
 echo "Looks good. Finished!\n";
 
 # generate graph (png saved to user selected path by gnuplot)
-$PLOTLOC /tmp/abgraph-plotme > /dev/null
+$PLOTLOC /Users/threv/snippets/abgraph-gnuplot > /dev/null
 
 echo "The graph has been saved to $2";
 
 # tidy up
-rm /tmp/abgraph-data1
-rm /tmp/abgraph-data2
-rm /tmp/abgraph-data3
-rm /tmp/abgraph-plotme
+rm /Users/threv/abgraph-data1
+rm /Users/threv/abgraph-data2
+rm /Users/threv/abgraph-data3
 
 # eog $2&
+open $2&
 
 else
 
 # display error message on wrong usage
 echo "Usage: abgraph [hostname to benchmark with http:// and trailing /] [output file .png] [number of requests]"
-echo "e.g: ./abgraph http://example.com/ /home/myhome/graph.png 500"
+echo "e.g: ./abgraph http://example.com/ /Users/myUsers/graph.png 500"
 
 fi
