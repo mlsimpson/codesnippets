@@ -67,7 +67,7 @@ echo "Looks good. Finished!\n";
 # generate graph (png saved to user selected path by gnuplot)
 $PLOTLOC /Users/threv/snippets/abgraph-gnuplot > /dev/null
 
-echo "The graph has been saved to $2";
+echo "The graph has been saved to /Users/threv/abgraph-image.png";
 
 # tidy up
 rm /Users/threv/abgraph-data1
