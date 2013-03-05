@@ -25,7 +25,7 @@ VERSION="Version 1.0 (01.09.2007) \n"
 
 # $1 = hostname to benchmark
 # $2 = where to output the PNG file
-# $3 = number of requests (must be over 100)
+# $2 = number of requests (must be over 100)
 
 # find out location of ab
 ABLOC=`which ab`
@@ -36,13 +36,13 @@ PLOTLOC=`which gnuplot`
 echo "This is ABGraph $VERSION";
 
 # check if all needed parameters are given
-if [ -n "$1" -a -n "$2" -a -n "$3" ]
+if [ -n "$1" -a -n "$2" ]
 
 then
 
 # first benchmark
-echo "Benchmarking... 1/3 ($3 HTTP requests)";
-$ABLOC -n $3 -g /Users/threv/abgraph-data1 $1 > /dev/null
+echo "Benchmarking... 1/3 ($2 HTTP requests)";
+$ABLOC -n $2 -g /Users/threv/abgraph-data1 $1 > /dev/null
 echo "Great.\nContinuing...";
 
 # sleep 5 seconds
@@ -50,8 +50,8 @@ echo "\nsleeping 5 seconds...\n"
 sleep 5
 
 # second benchmark
-echo "Benchmarking... 2/3 ($3 HTTP requests, simulating 25 concurrent users)";
-$ABLOC -n $3 -c 25 -g /Users/threv/abgraph-data2 $1 > /dev/null
+echo "Benchmarking... 2/3 ($2 HTTP requests, simulating 25 concurrent users)";
+$ABLOC -n $2 -c 25 -g /Users/threv/abgraph-data2 $1 > /dev/null
 echo "Okay.\nContinuing...";
 
 # sleep 5 seconds
@@ -59,8 +59,8 @@ echo "\nsleeping 5 seconds...\n"
 sleep 5
 
 # third benchmark
-echo "Benchmarking... 3/3 ($3 HTTP requests, simulating 50 concurrent users)";
-$ABLOC -n $3 -c 50 -g /Users/threv/abgraph-data3 $1 > /dev/null
+echo "Benchmarking... 3/3 ($2 HTTP requests, simulating 50 concurrent users)";
+$ABLOC -n $2 -c 50 -g /Users/threv/abgraph-data3 $1 > /dev/null
 
 echo "Looks good. Finished!\n";
 
@@ -75,12 +75,13 @@ rm /Users/threv/abgraph-data2
 rm /Users/threv/abgraph-data3
 
 # eog $2&
-open $2&
+# open $2&
 
 else
 
 # display error message on wrong usage
-echo "Usage: abgraph [hostname to benchmark with http:// and trailing /] [output file .png] [number of requests]"
-echo "e.g: ./abgraph http://example.com/ /Users/myUsers/graph.png 500"
+echo "Usage: abgraph [hostname to benchmark with http:// and trailing /] [number of requests]"
+echo "e.g: ./abgraph http://example.com/ 500"
+echo "Graph saved to /Users/threv/abgraph-image.png"
 
 fi
