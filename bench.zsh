@@ -4,7 +4,12 @@ export TIMEFMT='%E'
 
 main() {
   echo "Purging the disk cache..."
-  purge
+  unamestr=`uname`
+  if [[ "$unamestr" == 'Linux' ]]; then
+    sync; sudo sysctl vm/drop_caches=3; sync; sudo sysctl vm/drop_caches=0; sync
+  elif [[ "$unamestr" == 'Darwin' ]]; then
+    purge
+  fi
 
   # time's output is on stderr.
   zsh_elapsed_time=$( (time zsh -ilc exit) 2>&1 )
