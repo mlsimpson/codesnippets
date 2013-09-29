@@ -37,10 +37,11 @@ make install
 make distclean
 hash -r
 
-#mv ~/bin/* /usr/local/bin
-#
-#rm -rf ~/bin
-#
-#rm -rf ~/ffmpeg_sources
-#
-#rm -rf ~/ffmpeg_build
+cd ~/bin
+cp * /usr/local/bin
+cd ~/ffmpeg_build
+cp * /usr/local
+
+rm -rf ~/bin
+rm -rf ~/ffmpeg_sources
+rm -rf ~/ffmpeg_build
