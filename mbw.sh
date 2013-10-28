@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 # This will run an mbw instance for each core on the machine
 
-NUMCORES=$(grep "processor" /proc/cpuinfo | wc -l)
+NUMCORES=1
 TMP="/tmp/mbw_result_tmp"
 
 echo "Starting test on $NUMCORES cores"
