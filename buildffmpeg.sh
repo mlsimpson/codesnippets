@@ -38,9 +38,9 @@ make distclean
 hash -r
 
 cd ~/bin
-cp * /usr/local/bin
+cp -r * /usr/local/bin
 cd ~/ffmpeg_build
-cp * /usr/local
+cp -r * /usr/local
 
 rm -rf ~/bin
 rm -rf ~/ffmpeg_sources

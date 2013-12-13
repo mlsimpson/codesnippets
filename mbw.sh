@@ -1,4 +1,4 @@
-#! /usr/bin/env zsh
+#! /usr/bin/env bash
 # This will run an mbw instance for each core on the machine
 
 NUMCORES=1
