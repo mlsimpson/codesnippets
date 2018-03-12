@@ -13,7 +13,9 @@ if (( $+commands[pmset] )) ; then
   #battery="$(pmset -g ps | awk 'NR==2' | perl -pe 's/.*?(\d+)%.*/\1/')"
   battery="$(pmset -g ps | awk '{print $3}' | tail -n1 | sed $'s/[%|;]//g')"
 
-  if [[ $battery -lt 25 ]]; then
+  if [[ $battery -lt 10 ]]; then
+    echo "♡♡♡♡"
+  elif [[ $battery -lt 25 ]]; then
     echo "♥♡♡♡"
   elif [[ $battery -lt 50 ]]; then
     echo "♥♥♡♡"
