@@ -14,12 +14,12 @@ if (( $+commands[pmset] )) ; then
   battery="$(pmset -g ps | awk '{print $3}' | tail -n1 | sed $'s/[%|;]//g')"
 
   if [[ $battery -lt 25 ]]; then
-    echo "#[blink]♥#[noblink]♡♡"
+    echo "♥♡♡♡"
   elif [[ $battery -lt 50 ]]; then
-    echo "♥♡♡"
+    echo "♥♥♡♡"
   elif [[ $battery -lt 75 ]]; then
-    echo "♥♥♡"
+    echo "♥♥♥♡"
   else
-    echo "♥♥♥"
+    echo "♥♥♥♥"
   fi
 fi
