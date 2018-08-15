@@ -28,10 +28,10 @@ cd ffmpeg
 PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig"
 ./configure --prefix="$HOME/ffmpeg_build" \
   --extra-cflags="-I$HOME/ffmpeg_build/include" --extra-ldflags="-L$HOME/ffmpeg_build/lib" \
-  --bindir="$HOME/bin" --extra-libs="-ldl" --enable-gpl --enable-libass --enable-libfaac \
+  --bindir="$HOME/bin" --extra-libs="-ldl" --enable-gpl --enable-libass \
   --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora \
   --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree \
-  --enable-x11grab --enable-libspeex --enable-libgme
+  --enable-libspeex --enable-libgme
 make
 make install
 make distclean
