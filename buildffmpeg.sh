@@ -31,7 +31,7 @@ PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig"
   --bindir="$HOME/bin" --extra-libs="-ldl" --enable-gpl --enable-libass \
   --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora \
   --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree \
-  --enable-libspeex --enable-libgme
+  --enable-libspeex --enable-libgme --enable-libx265
 make
 make install
 make distclean
