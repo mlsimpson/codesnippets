@@ -6,12 +6,12 @@ sudo apt-get upgrade
 mkdir ~/ffmpeg_sources
 
 cd ~/ffmpeg_sources
-git clone --depth 1 git://git.videolan.org/x264.git
-cd x264
-./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-static
-make
-make install
-make distclean
+#git clone --depth 1 git://git.videolan.org/x264.git
+#cd x264
+#./configure --prefix="$HOME/ffmpeg_build" --bindir="$HOME/bin" --enable-static
+#make
+#make install
+#make distclean
 
 cd ~/ffmpeg_sources
 git clone --depth 1 git://github.com/mstorsjo/fdk-aac.git
@@ -31,7 +31,7 @@ PKG_CONFIG_PATH="$HOME/ffmpeg_build/lib/pkgconfig"
   --bindir="$HOME/bin" --extra-libs="-ldl" --enable-gpl --enable-libass \
   --enable-libfdk-aac --enable-libmp3lame --enable-libopus --enable-libtheora \
   --enable-libvorbis --enable-libvpx --enable-libx264 --enable-nonfree \
-  --enable-libspeex --enable-libgme --enable-libx265
+  --enable-libspeex --enable-libgme #--enable-libx265
 make
 make install
 make distclean
